@@ -275,17 +275,21 @@ int wifiaway_client(char const* server, int server_port, uint64_t interval_us, u
                 uint64_t next_send_time = start_time;
                 uint64_t end_send_time = next_send_time + duration_us;
                 uint64_t end_recv_time = end_send_time + 3000000;
-                uint64_t t = current_time();
+                uint64_t t = start_time;
+                uint64_t r_t = t + 1000000;
 
                 if (fprintf(F, "number, sent, received, echo\n") <= 0) {
                     printf("Cannot write first line on %s", file_name);
                     ret = -1;
                 }
                 while (ret == 0 && t < end_recv_time) {
-                    printf("Loop,  %" PRIu64 "\n", t - start_time);
+                    if (t >= r_t) {
+                        printf(".");
+                        fflush(stdout);
+                        r_t += 1000000;
+                    }
                     if (t >= next_send_time) {
                         int l;
-                        printf("Send at %" PRIu64 "\n", t - start_time);
                         marshall_64(buffer, seqnum);
                         marshall_64(buffer+8, t);
                         l = sendto(s, (char*)buffer, 16, 0, (struct sockaddr*)&addr_to, sizeof(addr_to));
@@ -372,6 +376,7 @@ int wifiaway_client(char const* server, int server_port, uint64_t interval_us, u
                     }
                     t = current_time();
                 }
+                printf("\n");
 
                 /* Notice whatever is not yet echoed */
                 for (uint64_t i = 0; ret == 0 && i < NUMBER_RANGE; i++) {
