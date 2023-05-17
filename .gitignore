@@ -4,3 +4,5 @@
 
 /wifiaway/.vs
 /wifiaway/out/build/x64-debug
+/wifiaway/Debug
+/wifiaway/x64/Debug
