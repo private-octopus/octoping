@@ -42,12 +42,17 @@
 #define SOCKET_CLOSE(x) closesocket(x)
 #endif
 
+#ifndef SOCKLEN_T
+#define SOCKLEN_T int
+#endif
+
 #else /* Linux */
 
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 #ifndef __USE_XOPEN2K
 #define __USE_XOPEN2K
@@ -75,6 +80,9 @@
 #endif
 #ifndef WSA_LAST_ERROR
 #define WSA_LAST_ERROR(x) ((long)(x))
+#endif
+#ifndef SOCKLEN_T
+#define SOCKLEN_T socklen_t
 #endif
 
 #endif
@@ -171,7 +179,7 @@ void network_error()
     printf("Network error: %d (0x%x)\n", err, err);
 }
 
-int wifiaway_server(server_port)
+int wifiaway_server(int server_port)
 {
     int ret = 0;
 	uint8_t buffer[512];
@@ -191,7 +199,7 @@ int wifiaway_server(server_port)
         }
 
         while (ret == 0) {
-            int from_len = (int) sizeof(addr4);
+            SOCKLEN_T from_len = (SOCKLEN_T) sizeof(addr4);
             int l = recvfrom(s, (char*)buffer, sizeof(buffer), 0, (struct sockaddr*)&addr4, &from_len);
             if (l < 0) {
                 network_error();
