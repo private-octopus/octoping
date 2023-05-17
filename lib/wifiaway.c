@@ -331,7 +331,7 @@ int wifiaway_client(char const* server, int server_port, uint64_t interval_us, u
                             ret = -1;
                             printf("Error: select returns %d\n", selected);
                         } else if (selected > 0) {
-                            int from_len = (int)sizeof(addr_from);
+                            SOCKLEN_T from_len = (int)sizeof(addr_from);
                             int l = recvfrom(s, (char*)buffer, sizeof(buffer), 0, (struct sockaddr*)&addr_from, &from_len);
 
                             if (l < 0) {
