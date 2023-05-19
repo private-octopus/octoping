@@ -1,6 +1,6 @@
 # octoping
 
-A simplistic implementation of ping/response over UDP. The client will send series of
+A simplistic implementation of RTT measurements via ping/response over UDP. The client will send series of
 UDP packets to the specified destination. The server echoes these packets. The packets
 up to three 64 bit integers:
 
