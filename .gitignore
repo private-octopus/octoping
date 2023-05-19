@@ -6,3 +6,7 @@
 /wifiaway/out/build/x64-debug
 /wifiaway/Debug
 /wifiaway/x64/Debug
+/.vs
+/octoping_vs/.vs/octoping_vs
+/octoping_vs/x64/Debug/octoping_vs.tlog
+/octoping_vs/x64/Debug
