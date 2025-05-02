@@ -151,10 +151,10 @@ static void usage(char const * sample_name)
     fprintf(stderr, "Usage:\n");
     fprintf(stderr, "    %s [-r] [-p port] [-o file_name] <server_name> <server_port> <interval_ms> <duration_seconds>", sample_name);
     fprintf(stderr, "or :\n");
-    fprintf(stderr, "    %s [-r] [-p port]", sample_name);
-    fprintf(stderr, "use -r to request real time enhancements from the OS.");
-    fprintf(stderr, "use -p to set the local source port number.");
-    fprintf(stderr, "use -o to sdirect output to file instead of stdout.");
+    fprintf(stderr, "    %s [-r] [-p port]\n", sample_name);
+    fprintf(stderr, "use -r to request real time enhancements from the OS.\n");
+    fprintf(stderr, "use -p to set the local source port number.\n");
+    fprintf(stderr, "use -o to sdirect output to file instead of stdout.\n");
     exit(1);
 }
 
@@ -380,7 +380,7 @@ int octoping_client(octoping_options_t * options)
                     }
                 }
 #else
-                F = fopen(file_name, "wt");
+                F = fopen(options->file_name, "wt");
 #endif
                 if (F == NULL) {
                     printf("Cannot open %s\n", options->file_name);
