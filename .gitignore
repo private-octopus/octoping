@@ -9,5 +9,6 @@
 /.vs
 /octoping_vs/.vs/octoping_vs
 /octoping_vs/x64/Debug/octoping_vs.tlog
-/octoping_vs/x64/Debug
-/octoping_vs/octoping_vs/x64/Debug
+/octoping_vs/x64/Debug/
+/octoping_vs/octoping_vs/x64/Debug/
+/octoping_vs/octoping_vs/x64/Debug/vc143.pdb
