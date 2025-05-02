@@ -396,7 +396,7 @@ int octoping_client(octoping_options_t * options)
                 uint64_t r_t = t + 1000000;
                 uint64_t min_rtt = UINT64_MAX;
 
-                if (fprintf(F, "number, sent, received, echo, rtt, up_t, down_t, phase\n") <= 0) {
+                if (fprintf(F, "number,sent,received,echo,rtt,up_t,down_t,phase\n") <= 0) {
                     printf("Cannot write first line on %s", options->file_name);
                     ret = -1;
                 }
@@ -505,7 +505,7 @@ int octoping_client(octoping_options_t * options)
                                 }
                                 sent_n = sent_at - start_time;
                                 recv_n = recv_at - start_time;
-                                down_t = echo_at - start_time;
+                                echo_n = echo_at - start_time;
                                 if (r_seqnum >= seqnum) {
                                     printf("Received number %" PRIu64 " while next number to send is %" PRIu64 "\n",
                                         r_seqnum, seqnum);
