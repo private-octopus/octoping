@@ -511,7 +511,7 @@ int octoping_client(octoping_options_t * options)
                                         r_seqnum, seqnum);
                                     ret = -1;
                                 }
-                                else if (fprintf(F, "%"PRIu64",%"PRId64",%"PRId64",%"PRId64",%"PRIu64",%"PRId64", %"PRId64", %"PRId64"\n",
+                                else if (fprintf(F, "%"PRIu64",%"PRId64",%"PRId64",%"PRId64",%"PRIu64",%"PRId64",%"PRId64",%"PRId64"\n",
                                     r_seqnum, sent_n, recv_n, echo_n, rtt, up_t, down_t, phase) < 0) {
                                     printf("write on %s returns error", options->file_name);
                                     ret = -1;
